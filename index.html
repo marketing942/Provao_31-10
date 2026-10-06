@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#0a2356" />
   <meta property="og:title" content="Provão 2027 | Colégio CPPEM" />
   <meta property="og:description" content="Inscreva-se no Provão 2027 do Colégio CPPEM, em Caruaru-PE." />
+  <meta property="og:image" content="public/img/og-provao.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <link rel="icon" type="image/png" href="public/img/icon-64.png" />
@@ -25,166 +26,112 @@
   (window,document,'script','dataLayer');</script>
 
   <style>
-    /* Identidade do site do Colégio CPPEM: navy iluminado, azul vivo e dourado do brasão */
+    /* Identidade do site do Colégio CPPEM: navy, azul vivo e dourado do brasão */
     :root {
       --navy-950: #06163a; --navy-900: #0a2356; --navy: #10307a;
-      --blue-700: #1650b0; --blue-600: #1d64d6; --blue-500: #2f7ff0; --blue-400: #5aa2ff;
-      --blue-200: #b7d6ff; --blue-100: #dcebff; --blue-50: #eef5ff;
+      --blue-600: #1d64d6; --blue-500: #2f7ff0; --blue-400: #5aa2ff;
+      --blue-200: #b7d6ff; --blue-100: #dcebff;
       --gold: #f2b01e; --gold-300: #ffd36b; --gold-600: #d99a0b;
       --ink: #16264a; --muted: #56688a;
       --display: "Nunito", system-ui, sans-serif; --body: "Nunito Sans", system-ui, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
-    body { margin: 0; font-family: var(--body); color: #fff; background: var(--navy-950); -webkit-font-smoothing: antialiased; }
+    body { margin: 0; min-height: 100dvh; display: flex; flex-direction: column; font-family: var(--body); color: #fff; background: var(--navy-950); -webkit-font-smoothing: antialiased; }
     img { max-width: 100%; display: block; }
     a { color: inherit; }
     :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    [hidden] { display: none !important; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-    /* ---------- fundo: banner + luzes ---------- */
-    .page { position: relative; isolation: isolate; min-height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
-    .bg { position: absolute; inset: 0; z-index: -2; background:
-        radial-gradient(90% 70% at 30% -10%, rgb(47 127 240 / .55), transparent 65%),
-        radial-gradient(55% 60% at 100% 100%, rgb(242 176 30 / .22), transparent 70%),
-        linear-gradient(180deg, var(--navy-900), var(--navy-950)); }
-    /* o banner entra por cima do gradiente; sem o arquivo, o gradiente continua aparecendo */
-    .bg picture, .bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left center; }
-    .bg::after { content: ""; position: absolute; inset: 0; background:
-        linear-gradient(90deg, rgb(6 22 58 / .15) 0%, rgb(6 22 58 / .35) 45%, rgb(6 22 58 / .78) 100%),
-        linear-gradient(0deg, rgb(6 22 58 / .7), transparent 35%); }
-    .orb { position: absolute; z-index: -1; border-radius: 50%; filter: blur(70px); pointer-events: none; }
-    .orb.a { top: -12%; left: -8%; width: 42vw; aspect-ratio: 1; background: radial-gradient(circle, rgb(90 162 255 / .5), transparent 70%); animation: orb 18s ease-in-out infinite; }
-    .orb.b { right: -6%; bottom: -18%; width: 36vw; aspect-ratio: 1; background: radial-gradient(circle, rgb(242 176 30 / .32), transparent 70%); animation: orb 22s ease-in-out infinite reverse; }
-    @keyframes orb { 50% { transform: translate(8%, 10%) scale(1.12); } }
+    /* ---------- celular e tablet: banner em cima, formulário embaixo ---------- */
+    .art img { width: 100%; height: auto; }
+    .side { display: grid; gap: 14px; padding: 22px 16px 8px; background:
+        radial-gradient(90% 50% at 50% 0%, rgb(47 127 240 / .4), transparent 70%), linear-gradient(180deg, var(--navy-900), var(--navy-950)); }
+    .side > * { width: 100%; max-width: 30rem; margin-inline: auto; }
 
-    /* ---------- topo ---------- */
-    .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; max-width: 1240px; margin: 0 auto; padding: 18px 20px 0; }
-    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand img { height: 54px; width: auto; filter: drop-shadow(0 0 12px rgb(242 176 30 / .45)); }
-    .brand span { font: 900 1.05rem/1 var(--display); letter-spacing: .04em; text-transform: uppercase; }
-    .brand b { color: var(--gold); }
-    .top a.site { font: 800 .9rem/1 var(--display); padding: 10px 16px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .25); background: rgb(255 255 255 / .06); text-decoration: none; backdrop-filter: blur(6px); }
-    .top a.site:hover { border-color: var(--gold); color: var(--gold-300); }
-
-    /* ---------- conteúdo ---------- */
-    .wrap { flex: 1; display: grid; gap: 36px; align-items: center; width: 100%; max-width: 1240px; margin: 0 auto; padding: 28px 20px 40px; }
-    @media (min-width: 960px) { .wrap { grid-template-columns: minmax(0, 1fr) 27rem; gap: 48px; padding-top: 36px; } }
-
-    .tag { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 999px; border: 1px solid rgb(242 176 30 / .45); background: rgb(242 176 30 / .12); color: var(--gold-300); font: 900 .75rem/1 var(--display); letter-spacing: .08em; text-transform: uppercase; }
-    .tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 1.6s ease-in-out infinite; }
-    @keyframes pulse { 50% { opacity: .35; } }
-    h1 { margin: 18px 0 0; font: 900 clamp(2.6rem, 7vw, 4.8rem)/.98 var(--display); letter-spacing: -.01em; text-shadow: 0 4px 24px rgb(0 0 0 / .35); }
-    h1 em { font-style: normal; background: linear-gradient(90deg, var(--gold-300), var(--gold), var(--gold-300)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .date { display: inline-block; margin-top: 14px; font: 900 clamp(2.2rem, 6vw, 4rem)/1 var(--display); color: #fff; text-shadow: 0 4px 24px rgb(0 0 0 / .35); }
-    .date small { display: block; margin-top: 6px; font: 800 1rem/1.2 var(--display); color: var(--blue-100); letter-spacing: .02em; }
-    .lead { max-width: 30rem; margin: 18px 0 0; font-size: 1.15rem; line-height: 1.55; color: rgb(220 235 255 / .92); }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
-    .chips li { padding: 7px 14px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .18); background: rgb(255 255 255 / .07); font: 700 .88rem/1 var(--body); backdrop-filter: blur(6px); }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 999px; border: 0; font: 900 1rem/1 var(--display); text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-    .btn-gold { color: var(--navy-950); background: linear-gradient(180deg, var(--gold-300), var(--gold) 55%, var(--gold-600)); box-shadow: 0 0 0 1px rgb(255 255 255 / .25) inset, 0 8px 24px -6px rgb(242 176 30 / .65); }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgb(255 255 255 / .35) inset, 0 12px 32px -6px rgb(242 176 30 / .85); }
-    .btn-ghost { color: #fff; border: 1px solid rgb(255 255 255 / .28); background: rgb(255 255 255 / .07); backdrop-filter: blur(6px); }
-    .btn-ghost:hover { border-color: var(--blue-400); background: rgb(47 127 240 / .22); }
-    .btn[disabled] { opacity: .7; cursor: wait; transform: none; }
-    .btn svg { width: 18px; height: 18px; }
+    /* ---------- computador: o banner ocupa a tela e o formulário fica na área clara, à direita ----------
+       A arte tem proporção 2:1 e é mostrada inteira (a altura da faixa é sempre metade da
+       largura), então os alunos nunca são cortados nem ficam atrás do formulário. */
+    @media (min-width: 1280px) {
+      .hero { position: relative; aspect-ratio: 2 / 1; display: grid; align-items: center; justify-items: end; padding: 0 clamp(20px, 3.4vw, 64px); }
+      .art { position: absolute; inset: 0; }
+      .art img { height: 100%; object-fit: cover; }
+      .side { position: relative; width: min(27rem, 37vw); padding: 0; background: none; }
+      .side > * { max-width: none; }
+    }
 
     /* ---------- cartão do formulário ---------- */
-    .card { background: #fff; color: var(--ink); border-radius: 28px; overflow: hidden; box-shadow: 0 30px 70px -30px rgb(0 0 0 / .7); }
-    .card-head { position: relative; padding: 22px 24px; background:
-        radial-gradient(90% 90% at 50% -20%, rgb(47 127 240 / .5), transparent 65%), linear-gradient(180deg, var(--navy-900), var(--navy-950)); color: #fff; }
+    .card { background: #fff; color: var(--ink); border-radius: 26px; overflow: hidden; box-shadow: 0 30px 70px -28px rgb(6 22 58 / .65), 0 0 0 1px rgb(16 48 122 / .08); }
+    .card-head { position: relative; padding: 18px 22px; text-align: center; color: #fff; background:
+        radial-gradient(90% 90% at 50% -20%, rgb(47 127 240 / .5), transparent 65%), linear-gradient(180deg, var(--navy-900), var(--navy-950)); }
     .card-head::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold-300) 50%, var(--gold) 80%, transparent); box-shadow: 0 0 14px rgb(242 176 30 / .7); }
-    .card-head p { margin: 0; }
-    .card-head .eyebrow { font: 900 .72rem/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-300); }
-    .card-head h2 { margin: 6px 0 4px; font: 900 1.6rem/1.1 var(--display); }
-    .card-head .sub { font-size: .9rem; color: rgb(220 235 255 / .8); }
+    .card-head h2 { margin: 0; font: 900 1.55rem/1.1 var(--display); letter-spacing: .02em; text-transform: uppercase; color: var(--gold-300); }
+    .card-head p { margin: 4px 0 0; font-size: .9rem; color: rgb(220 235 255 / .85); }
 
-    form { display: grid; gap: 14px; padding: 20px 24px 24px; }
-    .row { display: grid; gap: 12px; }
+    form { display: grid; gap: 11px; padding: 16px 22px 20px; }
+    .row { display: grid; gap: 11px; }
     @media (min-width: 420px) { .row.two { grid-template-columns: 1fr 1fr; } }
-    label { display: block; font: 800 .88rem/1.2 var(--display); color: var(--navy); }
-    label small { font: 400 .75rem/1 var(--body); color: var(--muted); }
-    input, select { width: 100%; margin-top: 6px; padding: 11px 14px; border-radius: 16px; border: 2px solid var(--blue-100); background: rgb(238 245 255 / .7); color: var(--ink); font: 400 .95rem/1.3 var(--body); transition: border-color .15s ease, background .15s ease; }
+    label { display: block; font: 800 .84rem/1.2 var(--display); color: var(--navy); }
+    label small { font: 400 .72rem/1 var(--body); color: var(--muted); }
+    input, select { width: 100%; margin-top: 5px; padding: 9px 13px; border-radius: 14px; border: 2px solid var(--blue-100); background: rgb(238 245 255 / .7); color: var(--ink); font: 400 .93rem/1.3 var(--body); transition: border-color .15s ease, background .15s ease; }
     input::placeholder { color: rgb(86 104 138 / .6); }
     input:hover, select:hover { border-color: var(--blue-200); }
     input:focus, select:focus { outline: none; border-color: var(--blue-500); background: #fff; }
     .is-invalid { border-color: #f87171 !important; background: #fef2f2 !important; }
-    .error { display: block; min-height: 0; margin-top: 4px; font: 700 .75rem/1.2 var(--body); color: #dc2626; }
+    .error { display: block; margin-top: 3px; font: 700 .72rem/1.2 var(--body); color: #dc2626; }
     .error:empty { display: none; }
-    .form-alert { margin: 0; padding: 11px 14px; border-radius: 16px; background: #fef2f2; color: #b91c1c; font: 700 .88rem/1.35 var(--body); }
-    .note { margin: 0; text-align: center; font-size: .75rem; line-height: 1.5; color: var(--muted); }
+    .form-alert { margin: 0; padding: 10px 13px; border-radius: 14px; background: #fef2f2; color: #b91c1c; font: 700 .85rem/1.35 var(--body); }
+    .note { margin: 0; text-align: center; font-size: .72rem; line-height: 1.45; color: var(--muted); }
     .trap { position: absolute; left: -9999px; }
 
-    .success { padding: 40px 24px; text-align: center; }
-    .success .ok { display: grid; place-items: center; width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; background: #d1fae5; color: #059669; box-shadow: 0 0 0 8px #ecfdf5; }
-    .success h3 { margin: 20px 0 6px; font: 900 1.5rem/1.15 var(--display); color: var(--navy); }
-    .success p { margin: 0 0 22px; color: var(--muted); }
-    [hidden] { display: none !important; }
+    .success { padding: 34px 22px; text-align: center; }
+    .success .ok { display: grid; place-items: center; width: 60px; height: 60px; margin: 0 auto; border-radius: 50%; background: #d1fae5; color: #059669; box-shadow: 0 0 0 8px #ecfdf5; }
+    .success h3 { margin: 18px 0 6px; font: 900 1.45rem/1.15 var(--display); color: var(--navy); }
+    .success p { margin: 0; color: var(--muted); }
 
-    footer { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 20px 22px; font-size: .75rem; color: rgb(220 235 255 / .6); }
+    /* ---------- botões ---------- */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 22px; border-radius: 999px; border: 0; font: 900 1rem/1 var(--display); text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn-gold { color: var(--navy-950); background: linear-gradient(180deg, var(--gold-300), var(--gold) 55%, var(--gold-600)); box-shadow: 0 0 0 1px rgb(255 255 255 / .25) inset, 0 8px 24px -6px rgb(242 176 30 / .65); }
+    .btn-navy { color: #fff; background: linear-gradient(180deg, var(--navy), var(--navy-900)); box-shadow: 0 0 0 1px rgb(255 255 255 / .12) inset, 0 10px 24px -10px rgb(6 22 58 / .8); }
+    .btn[disabled] { opacity: .7; cursor: wait; transform: none; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .actions .btn { padding-inline: 12px; font-size: .95rem; }
 
-    @media (max-width: 959px) {
-      .bg picture, .bg img { height: 62vh; object-position: center top; }
-      .bg::after { background: linear-gradient(180deg, rgb(6 22 58 / .25) 0%, rgb(6 22 58 / .7) 38%, var(--navy-950) 62%); }
-      .brand img { height: 46px; }
-      .top a.site { white-space: nowrap; font-size: .8rem; padding: 9px 13px; }
-      .brand span { font-size: .95rem; }
-    }
-    @media (prefers-reduced-motion: reduce) { .orb, .tag i { animation: none; } .btn { transition: none; } }
+    /* ---------- rodapé ---------- */
+    footer { flex: 1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 20px; padding: 16px clamp(16px, 3.4vw, 64px); font-size: .76rem; color: rgb(220 235 255 / .65); background: var(--navy-950); border-top: 2px solid rgb(242 176 30 / .5); }
+    footer a { font-weight: 700; color: var(--gold-300); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
   </style>
 </head>
 <body>
   <noscript><iframe src="https://sgtm.cppem.com.br/ns.html?id=GTM-PJ379FLQ" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 
-  <div class="page">
-    <div class="bg" aria-hidden="true">
-      <!-- BANNER: salve as artes com estes nomes em public/img/ e elas aparecem sozinhas.
-           Deixe o lado direito da arte de desktop mais vazio: é onde fica o formulário. -->
-      <picture>
-        <source media="(max-width: 959px)" srcset="public/img/banner-mobile.webp" />
-        <img src="public/img/banner-desktop.webp" alt="" onerror="this.closest('picture').remove()" />
-      </picture>
-    </div>
-    <span class="orb a" aria-hidden="true"></span>
-    <span class="orb b" aria-hidden="true"></span>
+  <main class="hero">
+    <h1 class="sr-only" data-text="heading"></h1>
 
-    <header class="top">
-      <a class="brand" data-link="site" href="#" aria-label="Colégio CPPEM — ir para o site">
-        <img src="public/img/brasao-cppem.webp" alt="" width="237" height="320" />
-        <span>Colégio <b>CPPEM</b></span>
-      </a>
-      <a class="site" data-link="site" href="#">Conhecer o colégio</a>
-    </header>
+    <!-- BANNER: public/img/banner-desktop.webp (2:1, com a direita livre para o formulário)
+         e public/img/banner-mobile.webp (só a parte da arte com os alunos e o título). -->
+    <picture class="art">
+      <source media="(min-width: 1280px)" srcset="public/img/banner-desktop.webp" />
+      <img src="public/img/banner-mobile.webp" width="1060" height="887" data-alt="bannerAlt" alt="" />
+    </picture>
 
-    <main class="wrap">
-      <section>
-        <span class="tag"><i></i><span data-text="tag"></span></span>
-        <h1><span data-text="title"></span> <em data-text="titleHighlight"></em></h1>
-        <p class="date" data-block="date"><span data-text="date"></span><small data-text="dateDetail"></small></p>
-        <p class="lead" data-text="lead"></p>
-        <ul class="chips" data-list="chips"></ul>
-        <div class="actions">
-          <a class="btn btn-gold" data-link="edital" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
-            Ler o edital
-          </a>
-          <a class="btn btn-ghost" data-link="whatsapp" href="#" target="_blank" rel="noopener">Tirar dúvidas no WhatsApp</a>
-        </div>
-      </section>
-
-      <aside class="card" aria-labelledby="form-title">
+    <div class="side">
+      <section class="card" aria-labelledby="form-title">
         <div class="card-head">
-          <p class="eyebrow">Inscreva-se</p>
-          <h2 id="form-title" data-text="formTitle"></h2>
-          <p class="sub">É rápido: leva cerca de 1 minuto.</p>
+          <h2 id="form-title">Inscreva-se</h2>
+          <p>É rápido e fácil: leva cerca de 1 minuto.</p>
         </div>
 
         <div class="success" id="form-success" hidden role="status">
-          <span class="ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <span class="ok"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>
           <h3>Inscrição recebida!</h3>
           <p>Nossa equipe vai entrar em contato pelo telefone ou e-mail informado.</p>
-          <a class="btn btn-gold" data-link="edital" href="#" target="_blank" rel="noopener">Ler o edital</a>
         </div>
 
         <!--
@@ -245,18 +192,29 @@
           <!-- campo-isca contra robôs -->
           <div class="trap" aria-hidden="true"><label for="provao_website">Não preencha</label><input type="text" id="provao_website" name="website" tabindex="-1" autocomplete="off" /></div>
 
-          <button type="submit" id="lead_submit" class="btn btn-gold">Fazer inscrição</button>
-          <p class="note">Usamos seus dados só para o contato da equipe do Colégio CPPEM sobre o provão.</p>
+          <button type="submit" id="lead_submit" class="btn btn-gold">Inscrever-se</button>
+          <p class="note">Usamos seus dados só para o contato da equipe do Colégio CPPEM.</p>
         </form>
-      </aside>
-    </main>
+      </section>
 
-    <footer>© <span id="year"></span> CPPEM Colégio e Cursos LTDA · CNPJ 57.347.872/0001-48 · Caruaru-PE</footer>
-  </div>
+      <div class="actions">
+        <a class="btn btn-gold" data-link="edital" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
+          Edital
+        </a>
+        <a class="btn btn-navy" data-link="site" href="#" target="_blank" rel="noopener">Site do colégio</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> CPPEM Colégio e Cursos LTDA · CNPJ 57.347.872/0001-48 · Caruaru-PE</span>
+    <a data-link="whatsapp" href="#" target="_blank" rel="noopener">Dúvidas? Fale com a gente no WhatsApp</a>
+  </footer>
 
   <script>
     /* =========================================================
-       CONFIG — tudo o que muda de um provão para outro fica aqui.
+       CONFIG — tudo o que muda de um evento para outro fica aqui.
        ========================================================= */
     const CONFIG = {
       formId: "eiBtTROiAlNexbHXklSc",          // identificador do painel da PixelX (o mesmo do <form>)
@@ -264,25 +222,19 @@
       links: {
         edital: "https://app.notion.com/p/cppem/EDITAL-PROV-O-2027-3f1bbae8074c80cc97c8cc761066a0be",
         site: "https://colegio.cppem.com.br",
-        whatsapp: "https://wa.me/5581997076388?text=" + encodeURIComponent("Olá! Quero saber mais sobre o Provão 2027 do Colégio CPPEM."),
+        whatsapp: "https://wa.me/5581997076388?text=" + encodeURIComponent("Olá! Quero saber mais sobre o Provão do Colégio CPPEM."),
       },
       texts: {
-        tag: "Inscrições abertas",
-        title: "Provão",
-        titleHighlight: "2027",
-        date: "31/10",                         // deixe "" para esconder a data
-        dateDetail: "",                        // ex.: "Sábado, às 8h · na sede do colégio"
-        lead: "Inscreva seu filho no Provão do Colégio CPPEM. Preencha o formulário e confira todas as regras no edital.",
-        formTitle: "Provão 2027",
-        chips: ["Do 1º ano ao 3º do Médio", "Caruaru-PE", "Vagas limitadas"],
+        // o título visível está na arte do banner; estes dois são lidos por leitores de tela e buscadores
+        heading: "Provão 2027 do Colégio CPPEM — 31/10 — inscreva-se",
+        bannerAlt: "Três alunos do Colégio CPPEM com a farda da escola. Aulão CPPEM, 31/10.",
       },
     };
 
     /* ---------- textos e links ---------- */
     document.querySelectorAll("[data-text]").forEach((el) => { el.textContent = CONFIG.texts[el.dataset.text] ?? ""; });
+    document.querySelectorAll("[data-alt]").forEach((el) => { el.alt = CONFIG.texts[el.dataset.alt] ?? ""; });
     document.querySelectorAll("[data-link]").forEach((el) => { el.href = CONFIG.links[el.dataset.link]; });
-    document.querySelector("[data-list='chips']").innerHTML = CONFIG.texts.chips.map((chip) => `<li>${chip}</li>`).join("");
-    if (!CONFIG.texts.date) document.querySelector("[data-block='date']").hidden = true;
     document.getElementById("year").textContent = new Date().getFullYear();
 
     /* ---------- formulário ---------- */
@@ -327,7 +279,7 @@
       alertEl.textContent = message;
       alertEl.hidden = false;
       submitBtn.disabled = false;
-      submitBtn.textContent = "Fazer inscrição";
+      submitBtn.textContent = "Inscrever-se";
     }
 
     async function enviar() {

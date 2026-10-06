@@ -6,8 +6,8 @@ da Vercel (`api/inscricao.js`) que grava cada inscrição no Notion.
 ## O que trocar
 
 - **Textos, data e links:** bloco `CONFIG` no fim do `index.html`.
-- **Banner:** salve as artes em `public/img/banner-desktop.webp` e
-  `public/img/banner-mobile.webp`. Sem elas a página mostra o fundo azul.
+- **Banner:** as artes ficam em `public/img/banner-desktop.webp` (2:1) e
+  `public/img/banner-mobile.webp` (recorte da parte com os alunos e o título).
   Na arte de desktop, deixe o lado direito mais vazio: é onde fica o formulário.
 
 ## Rodar localmente
