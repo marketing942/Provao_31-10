@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Provão 2027 | Colégio CPPEM — Caruaru-PE</title>
-  <meta name="description" content="Provão 2027 do Colégio CPPEM, em Caruaru-PE, no dia 31/10. Inscrições encerradas: confira o edital." />
+  <meta name="description" content="Inscreva-se no Provão 2027 do Colégio CPPEM, em Caruaru-PE. Preencha o formulário e confira o edital." />
   <meta name="theme-color" content="#0a2356" />
   <meta property="og:title" content="Provão 2027 | Colégio CPPEM" />
-  <meta property="og:description" content="Provão 2027 do Colégio CPPEM, em Caruaru-PE, no dia 31/10. Inscrições encerradas." />
+  <meta property="og:description" content="Inscreva-se no Provão 2027 do Colégio CPPEM, em Caruaru-PE." />
   <meta property="og:image" content="public/img/og-provao.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
@@ -122,19 +122,79 @@
     </picture>
 
     <div class="side">
-      <!-- Inscrições encerradas em 30/10. O formulário (com a nomenclatura da PixelX)
-           está no histórico do git, no commit 4c6d3cc, se precisar reabrir. -->
       <section class="card" aria-labelledby="form-title">
         <div class="card-head">
-          <h2 id="form-title">Inscrições encerradas</h2>
-          <p>O prazo de inscrição terminou.</p>
+          <h2 id="form-title">Inscreva-se</h2>
+          <p>É rápido e fácil: leva cerca de 1 minuto.</p>
         </div>
 
-        <div class="success" role="status">
-          <span class="ok"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-          <h3>Nos vemos no Provão!</h3>
-          <p>A prova acontece no dia 31/10. Quem já se inscreveu pode conferir os detalhes no edital. Dúvidas? Fale com a gente pelo WhatsApp.</p>
+        <div class="success" id="form-success" hidden role="status">
+          <span class="ok"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Inscrição recebida!</h3>
+          <p>Nossa equipe vai entrar em contato pelo telefone ou e-mail informado.</p>
         </div>
+
+        <!--
+          RASTREAMENTO (PixelX — o Lead é disparado pelo painel no envio do formulário).
+          A nomenclatura abaixo é o vínculo com o painel, não estilo. Não renomeie:
+            <form>   id = identificador do painel, name = "lead_form"
+            nome     id="lead_name"  name="name"
+            e-mail   id="lead_email" name="email"
+            telefone id="lead_phone" name="phone" class="pxa_mask_phone" type="text"
+            botão    id="lead_submit"
+          O site não aplica máscara no telefone nem chama send_event.
+        -->
+        <form name="lead_form" id="eiBtTROiAlNexbHXklSc" novalidate>
+          <p class="form-alert" id="form-alert" hidden role="alert"></p>
+
+          <div>
+            <label for="lead_name">Nome do responsável</label>
+            <input type="text" id="lead_name" name="name" autocomplete="name" placeholder="Quem cuida da inscrição" required />
+            <span class="error" data-error-for="name"></span>
+          </div>
+
+          <div class="row two">
+            <div>
+              <label for="lead_phone">Telefone / WhatsApp</label>
+              <input class="pxa_mask_phone" type="text" inputmode="tel" id="lead_phone" name="phone" autocomplete="tel" required />
+              <span class="error" data-error-for="phone"></span>
+            </div>
+            <div>
+              <label for="lead_email">E-mail</label>
+              <input type="email" id="lead_email" name="email" autocomplete="email" placeholder="voce@email.com" required />
+              <span class="error" data-error-for="email"></span>
+            </div>
+          </div>
+
+          <div>
+            <label for="provao_student">Nome do aluno</label>
+            <input type="text" id="provao_student" name="student" placeholder="Nome completo do aluno" required />
+            <span class="error" data-error-for="student"></span>
+          </div>
+
+          <div class="row two">
+            <div>
+              <label for="provao_series">Série em 2027</label>
+              <select id="provao_series" name="series" required>
+                <option value="">Selecione</option>
+                <optgroup label="Fundamental 1"><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option><option>5º ano</option></optgroup>
+                <optgroup label="Fundamental 2"><option>6º ano</option><option>7º ano</option><option>8º ano</option></optgroup>
+                <optgroup label="9º ano e Ensino Médio"><option>9º ano</option><option>1ª série</option><option>2ª série</option><option>3ª série</option></optgroup>
+              </select>
+              <span class="error" data-error-for="series"></span>
+            </div>
+            <div>
+              <label for="provao_school">Escola atual <small>(opcional)</small></label>
+              <input type="text" id="provao_school" name="school" placeholder="Onde estuda hoje" />
+            </div>
+          </div>
+
+          <!-- campo-isca contra robôs -->
+          <div class="trap" aria-hidden="true"><label for="provao_website">Não preencha</label><input type="text" id="provao_website" name="website" tabindex="-1" autocomplete="off" /></div>
+
+          <button type="submit" id="lead_submit" class="btn btn-gold">Inscrever-se</button>
+          <p class="note">Usamos seus dados só para o contato da equipe do Colégio CPPEM.</p>
+        </form>
       </section>
 
       <div class="actions">
@@ -157,6 +217,8 @@
        CONFIG — tudo o que muda de um evento para outro fica aqui.
        ========================================================= */
     const CONFIG = {
+      formId: "eiBtTROiAlNexbHXklSc",          // identificador do painel da PixelX (o mesmo do <form>)
+      endpoint: "/api/inscricao",              // função que grava no Notion
       links: {
         edital: "https://app.notion.com/p/cppem/EDITAL-PROV-O-2027-3f1bbae8074c80cc97c8cc761066a0be",
         site: "https://colegio.cppem.com.br",
@@ -164,7 +226,7 @@
       },
       texts: {
         // o título visível está na arte do banner; estes dois são lidos por leitores de tela e buscadores
-        heading: "Provão 2027 do Colégio CPPEM — 31/10 — inscrições encerradas",
+        heading: "Provão 2027 do Colégio CPPEM — 31/10 — inscreva-se",
         bannerAlt: "Três alunos do Colégio CPPEM com a farda da escola. Provão CPPEM, 31/10.",
       },
     };
@@ -174,6 +236,85 @@
     document.querySelectorAll("[data-alt]").forEach((el) => { el.alt = CONFIG.texts[el.dataset.alt] ?? ""; });
     document.querySelectorAll("[data-link]").forEach((el) => { el.href = CONFIG.links[el.dataset.link]; });
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    /* ---------- formulário ---------- */
+    const form = document.getElementById(CONFIG.formId);
+    const submitBtn = document.getElementById("lead_submit");
+    const alertEl = document.getElementById("form-alert");
+    const fields = { name: "lead_name", phone: "lead_phone", email: "lead_email", student: "provao_student", series: "provao_series" };
+
+    if (!form) console.error(`[tracking] Formulário "${CONFIG.formId}" não encontrado.`);
+    if (document.querySelectorAll(`[id="${CONFIG.formId}"]`).length > 1) console.error(`[tracking] id "${CONFIG.formId}" duplicado na página.`);
+
+    const value = (key) => document.getElementById(fields[key]).value.trim();
+    const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    /* Conta DÍGITOS e tira o "+55" da máscara pelo "+" literal (o DDD 55 existe). Aceita celular ou fixo. */
+    const isPhone = (v) => { const d = v.replace(/^\+\s*55\s*/, "").replace(/\D/g, ""); return d.length === 10 || d.length === 11; };
+
+    function showErrors(errors) {
+      let first = null;
+      for (const key of Object.keys(fields)) {
+        const input = document.getElementById(fields[key]);
+        const el = document.querySelector(`[data-error-for="${key}"]`);
+        input.classList.toggle("is-invalid", Boolean(errors[key]));
+        el.textContent = errors[key] || "";
+        if (errors[key] && !first) first = input;
+      }
+      return first;
+    }
+
+    function validate() {
+      const errors = {};
+      if (value("name").length < 3) errors.name = "Informe o nome do responsável.";
+      if (!isPhone(value("phone"))) errors.phone = "Informe o telefone com DDD.";
+      if (!isEmail(value("email"))) errors.email = "Informe um e-mail válido.";
+      if (value("student").length < 3) errors.student = "Informe o nome do aluno.";
+      if (!value("series")) errors.series = "Selecione a série.";
+      const first = showErrors(errors);
+      if (first) first.focus();
+      return !first;
+    }
+
+    function fail(message) {
+      alertEl.textContent = message;
+      alertEl.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Inscrever-se";
+    }
+
+    async function enviar() {
+      alertEl.hidden = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando…";
+
+      const payload = Object.fromEntries(new FormData(form).entries());
+      try {
+        const response = await fetch(CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) {
+          if (result.errors) showErrors(result.errors);
+          return fail(result.message || "Não conseguimos registrar sua inscrição agora. Tente de novo ou fale com a gente pelo WhatsApp.");
+        }
+      } catch {
+        return fail("Sem conexão com o servidor. Tente de novo ou fale com a gente pelo WhatsApp.");
+      }
+
+      /* NÃO usar form.reset() nem remover o formulário: a PixelX lê os campos e
+         termina de enviar o Lead alguns instantes depois. Só esconder. */
+      form.hidden = true;
+      const success = document.getElementById("form-success");
+      success.hidden = false;
+      success.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    /* Barreira única: submit capturado no DOCUMENT, em fase de captura. Roda sempre
+       antes do listener da PixelX. Inválido → o evento morre aqui e nenhum Lead conta. */
+    document.addEventListener("submit", (e) => {
+      if (!form || e.target !== form) return;
+      e.preventDefault();                 // nunca recarregar a página
+      if (!validate()) { e.stopImmediatePropagation(); return; }
+      enviar();                           // válido → segue para a PixelX registrar o Lead
+    }, true);
   </script>
 </body>
 </html>
