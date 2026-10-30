@@ -27,6 +27,9 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, message: "Método não permitido." });
   }
 
+  // inscrições encerradas em 30/10: recusa até envios de páginas antigas em cache
+  return res.status(410).json({ ok: false, message: "As inscrições do Provão estão encerradas. Dúvidas? Fale com a gente pelo WhatsApp." });
+
   const body = typeof req.body === "string" ? safeParse(req.body) : req.body || {};
 
   // campo-isca: gente não preenche, robô preenche. Responde ok sem gravar.
